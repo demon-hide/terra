@@ -330,6 +330,7 @@ impl ShaderGenBuilder {
         self,
         f: F,
     ) -> Box<dyn GenerateTile> {
+        println!(">>>>>>>> {}", self.name);
         Box::new(ShaderGen {
             name: self.name,
             shader_validation: self.shader_validation,

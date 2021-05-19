@@ -113,8 +113,8 @@ fn main() {
         .expect("Unable to create compatible wgpu device");
 
     let mut size = window.inner_size();
-    let mut swap_chain = None;
-    let mut depth_buffer = None;
+    //let mut swap_chain = None;
+    //let mut depth_buffer = None;
 
     #[cfg(feature = "smaa")]
     let mut smaa_target = smaa::SmaaTarget::new(
@@ -141,7 +141,7 @@ fn main() {
     let mut lat = plus_center.y().to_radians();
     let mut long = plus_center.x().to_radians();
     let mut altitude = opt.elevation;
-
+/*
     let mut terrain = terra::Terrain::new(&device, &queue).unwrap();
 
     if let Some(dataset_directory) = opt.generate {
@@ -281,47 +281,47 @@ fn main() {
                     }
                 }
 
-                lat = lat.max(-PI).min(PI);
-                if long < -PI {
-                    long += PI * 2.0;
-                }
-                if long > PI {
-                    long -= PI * 2.0;
-                }
+                    lat = lat.max(-PI).min(PI);
+                    if long < -PI {
+                        long += PI * 2.0;
+                    }
+                    if long > PI {
+                        long -= PI * 2.0;
+                    }
 
-                let surface_height = terrain.get_height(lat, long) as f64;
-                let r = altitude + planet_radius + surface_height + 2.0;
-                let eye = cgmath::Point3::new(
-                    r * lat.cos() * long.cos(),
-                    r * lat.cos() * long.sin(),
-                    r * lat.sin(),
-                );
+                    let surface_height = terrain.get_height(lat, long) as f64;
+                    let r = altitude + planet_radius + surface_height + 2.0;
+                    let eye = cgmath::Point3::new(
+                        r * lat.cos() * long.cos(),
+                        r * lat.cos() * long.sin(),
+                        r * lat.sin(),
+                    );
 
-                let dt = (planet_radius / (planet_radius + altitude)).acos() * 0.3;
-                let latc = lat + angle.cos() * dt;
-                let longc = long - angle.sin() * dt;
+                    let dt = (planet_radius / (planet_radius + altitude)).acos() * 0.3;
+                    let latc = lat + angle.cos() * dt;
+                    let longc = long - angle.sin() * dt;
 
-                let center = cgmath::Point3::new(
-                    planet_radius * latc.cos() * longc.cos() - eye.x,
-                    planet_radius * latc.cos() * longc.sin() - eye.y,
-                    planet_radius * latc.sin() - eye.z,
-                );
-                let up = cgmath::Vector3::new(eye.x as f32, eye.y as f32, eye.z as f32);
+                    let center = cgmath::Point3::new(
+                        planet_radius * latc.cos() * longc.cos() - eye.x,
+                        planet_radius * latc.cos() * longc.sin() - eye.y,
+                        planet_radius * latc.sin() - eye.z,
+                    );
+                    let up = cgmath::Vector3::new(eye.x as f32, eye.y as f32, eye.z as f32);
 
-                let view = cgmath::Matrix4::look_at_rh(
-                    cgmath::Point3::origin(),
-                    cgmath::Point3::new(center.x as f32, center.y as f32, center.z as f32),
-                    up,
-                );
+                    let view = cgmath::Matrix4::look_at_rh(
+                        cgmath::Point3::origin(),
+                        cgmath::Point3::new(center.x as f32, center.y as f32, center.z as f32),
+                        up,
+                    );
 
-                let proj = compute_projection_matrix(size.width as f32, size.height as f32);
-                let view_proj = proj * view;
-                let view_proj = mint::ColumnMatrix4 {
-                    x: view_proj.x.into(),
-                    y: view_proj.y.into(),
-                    z: view_proj.z.into(),
-                    w: view_proj.w.into(),
-                };
+                    let proj = compute_projection_matrix(size.width as f32, size.height as f32);
+                    let view_proj = proj * view;
+                    let view_proj = mint::ColumnMatrix4 {
+                        x: view_proj.x.into(),
+                        y: view_proj.y.into(),
+                        z: view_proj.z.into(),
+                        w: view_proj.w.into(),
+                    };
 
                 terrain.render(
                     &device,
@@ -341,4 +341,5 @@ fn main() {
             _ => (),
         }
     });
+    */
 }
